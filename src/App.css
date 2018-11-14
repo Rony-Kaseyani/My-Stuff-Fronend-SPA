@@ -44,7 +44,9 @@ h5, h6
 a, a:hover
 { outline: none;
   text-decoration: underline;
-  color: #000;}
+  color: #000;
+  cursor: pointer;
+  }
 
 a:hover
 { text-decoration: none;}

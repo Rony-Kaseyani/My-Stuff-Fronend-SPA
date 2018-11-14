@@ -3,6 +3,8 @@ import './App.css';
 import DataTable from './DataTable'
 import LoginForm from './LoginForm'
 import RegistrationForm from './RegistrationForm'
+import ContactForm from './ContactForm'
+import ItemForm from './ItemForm'
 
 class App extends Component {
 	constructor(props) {
@@ -11,29 +13,53 @@ class App extends Component {
 		this.switchToTab=this.switchToTab.bind(this)
 		this.openLoginForm=this.openLoginForm.bind(this)
 		this.openRegistrationForm=this.openRegistrationForm.bind(this)
+		this.openContactForm=this.openContactForm.bind(this)
+		this.openItemForm=this.openItemForm.bind(this)
 		this.setHomePage=this.setHomePage.bind(this)
 	}
 
 	switchToTab(tab) {
 		this.setState({selectedCategory:tab})
 		this.setState({loginFormOpen:false})
-		this.setState({registrationFormOpen:false})	
+		this.setState({registrationFormOpen:false})
+		this.setState({contactFormOpen:false})
+		this.setState({itemFormOpen:false})
 	}
 	
 	openLoginForm() {
 		this.setState({loginFormOpen:true})
 		this.setState({registrationFormOpen:false})
+		this.setState({contactFormOpen:false})
+		this.setState({itemFormOpen:false})
 	}
 	
 	openRegistrationForm() {
 		this.setState({registrationFormOpen:true})
 		this.setState({loginFormOpen:false})
+		this.setState({contactFormOpen:false})
+		this.setState({itemFormOpen:false})
+	}
+
+	openContactForm() {
+		this.setState({contactFormOpen:true})
+		this.setState({loginFormOpen:false})
+		this.setState({registrationFormOpen:false})
+		this.setState({itemFormOpen:false})
+	}
+
+	openItemForm() {
+		this.setState({itemFormOpen:true})
+		this.setState({contactFormOpen:false})
+		this.setState({loginFormOpen:false})
+		this.setState({registrationFormOpen:false})
 	}
 	
 	setHomePage() {
 		this.setState({selectedCategory:"Home"})
 		this.setState({loginFormOpen:false})
 		this.setState({registrationFormOpen:false})
+		this.setState({contactFormOpen:false})
+		this.setState({itemFormOpen:false})
 	}
 	
   render() {
@@ -44,6 +70,12 @@ class App extends Component {
      else if (this.state.registrationFormOpen) {
 		content = <RegistrationForm/>
 	 }
+     else if (this.state.contactFormOpen) {
+		content = <ContactForm/>
+	 }
+     else if (this.state.itemFormOpen) {
+		content = <ItemForm/>
+	 }	 	 
 	 else {content = <DataTable selectedCategory={this.state.selectedCategory}/>}
     return (
   <div id="main">
@@ -83,9 +115,9 @@ class App extends Component {
           </p>
         </form>
 		
-        <h3>Useful Links</h3>
+        <h3>Quick Links</h3>
         <ul>
-          <li><a href="#">link 1</a></li>
+          <li><a onClick={ ()=> {this.openItemForm()}}>Add Item</a></li>
           <li><a href="#">link 2</a></li>
           <li><a href="#">link 3</a></li>
           <li><a href="#">link 4</a></li>
@@ -98,7 +130,7 @@ class App extends Component {
 		</div>
     </div>
     <div id="footer">
-      Copyright &copy; My Stuff | <a href="contact.html">Contact Us</a>
+      Copyright &copy; My Stuff | <a onClick={ ()=> {this.openContactForm()}}>Contact Us</a>
     </div>
   </div>
     );
