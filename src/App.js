@@ -110,7 +110,7 @@ class App extends Component {
         <h3>Search</h3>
         <form method="post" action="#" id="search_form">
           <p>
-            <input className="search" type="text" name="search_field" value="Enter keywords....." />
+            <input className="search" type="text" name="search_field" defaultValue="Enter keywords....." />
 			<input name="search" type="image" style={{border: 0, margin: "0 0 -9px 5px"}} src="search.png" alt="Search" title="Search" />
           </p>
         </form>
@@ -127,6 +127,7 @@ class App extends Component {
       {(this.state.selectedCategory=="Home")? <h1>My Stuff Assignment</h1>:""}
 
 			{content}
+
 		</div>
     </div>
     <div id="footer">
