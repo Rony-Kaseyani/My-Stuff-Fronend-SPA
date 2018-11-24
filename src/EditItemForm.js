@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ItemForm extends Component {
+class EditItemForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -41,8 +41,8 @@ class ItemForm extends Component {
 		
     return (
 <div>
-    <h2>Add Your Item For Sale</h2>
-    <form action="/items/add" enctype="multipart/form-data" method="post">
+    <h2>Edit Your Item For Sale</h2>
+    <form action="/items/add" enctype="multipart/form-data" method="get">
         <div className="form_settings">
             <p><span>Select Item Category:</span>
                 <select id="id" name="category">
@@ -66,7 +66,7 @@ class ItemForm extends Component {
             <p>Condition:</p>
             <p><span>New</span><input type="radio" name="condition" value="new" id="new" /></p>
             <p><span>Used</span><input type="radio" name="condition" value="used" id="used" /></p>
-            <p><span>Item Price:</span><input type="text" name="price" defaultValue="" />&nbsp; <b>£</b></p>
+            <p><span>Item Price:</span><input type="text" name="price" defaultValue="" />£</p>
             <br />
             <p><span>City where Item is being sold from:</span><input type="text" name="city" defaultValue="" /></p>
             <br />
@@ -82,4 +82,4 @@ class ItemForm extends Component {
   }
 }
 
-export default ItemForm;
+export default EditItemForm;

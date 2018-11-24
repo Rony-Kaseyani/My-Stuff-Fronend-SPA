@@ -5,6 +5,7 @@ import LoginForm from './LoginForm'
 import RegistrationForm from './RegistrationForm'
 import ContactForm from './ContactForm'
 import ItemForm from './ItemForm'
+import DisplayProduct from './DisplayProduct'
 
 class App extends Component {
 	constructor(props) {
@@ -16,6 +17,7 @@ class App extends Component {
 		this.openContactForm=this.openContactForm.bind(this)
 		this.openItemForm=this.openItemForm.bind(this)
 		this.setHomePage=this.setHomePage.bind(this)
+		this.displayProduct=this.displayProduct.bind(this)
 	}
 
 	switchToTab(tab) {
@@ -24,6 +26,7 @@ class App extends Component {
 		this.setState({registrationFormOpen:false})
 		this.setState({contactFormOpen:false})
 		this.setState({itemFormOpen:false})
+		this.setState({productDisplay:undefined})
 	}
 	
 	openLoginForm() {
@@ -31,6 +34,7 @@ class App extends Component {
 		this.setState({registrationFormOpen:false})
 		this.setState({contactFormOpen:false})
 		this.setState({itemFormOpen:false})
+		this.setState({productDisplay:undefined})
 	}
 	
 	openRegistrationForm() {
@@ -38,6 +42,7 @@ class App extends Component {
 		this.setState({loginFormOpen:false})
 		this.setState({contactFormOpen:false})
 		this.setState({itemFormOpen:false})
+		this.setState({productDisplay:undefined})
 	}
 
 	openContactForm() {
@@ -45,6 +50,7 @@ class App extends Component {
 		this.setState({loginFormOpen:false})
 		this.setState({registrationFormOpen:false})
 		this.setState({itemFormOpen:false})
+		this.setState({productDisplay:undefined})
 	}
 
 	openItemForm() {
@@ -52,10 +58,21 @@ class App extends Component {
 		this.setState({contactFormOpen:false})
 		this.setState({loginFormOpen:false})
 		this.setState({registrationFormOpen:false})
+		this.setState({productDisplay:undefined})
 	}
 	
 	setHomePage() {
 		this.setState({selectedCategory:"Home"})
+		this.setState({loginFormOpen:false})
+		this.setState({registrationFormOpen:false})
+		this.setState({contactFormOpen:false})
+		this.setState({itemFormOpen:false})
+		this.setState({productDisplay:undefined})
+	}
+
+	displayProduct(id) {
+		this.setState({productDisplay:id})
+		this.setState({selectedCategory:false})
 		this.setState({loginFormOpen:false})
 		this.setState({registrationFormOpen:false})
 		this.setState({contactFormOpen:false})
@@ -75,8 +92,11 @@ class App extends Component {
 	 }
      else if (this.state.itemFormOpen) {
 		content = <ItemForm/>
-	 }	 	 
-	 else {content = <DataTable selectedCategory={this.state.selectedCategory}/>}
+	 }	 
+     else if (this.state.productDisplay) {
+		content = <DisplayProduct productId = {this.state.productDisplay}/>
+	 }		 
+	 else {content = <DataTable selectedCategory={this.state.selectedCategory} onProductSelect={this.displayProduct}/>}
     return (
   <div id="main">
     <div id="header">
@@ -96,7 +116,10 @@ class App extends Component {
           <li><a onClick={()=> {this.switchToTab("Motors")}}>Motors</a></li>
 		  <li><a onClick={()=> {this.switchToTab("Books")}}>Books</a></li>
 		  <li><a onClick={()=> {this.switchToTab("Sports")}}>Sports</a></li>
+		  <li><a onClick={()=> {this.switchToTab("Furniture")}}>Furniture</a></li>
 		  <li><a onClick={()=> {this.switchToTab("Cookware")}}>Cookware</a></li>
+		  <li><a onClick={()=> {this.switchToTab("Toys")}}>Toys</a></li>
+		  <li><a onClick={()=> {this.switchToTab("Artwork")}}>Artwork</a></li>
         </ul>
       </div>
 		  <div className="topright">

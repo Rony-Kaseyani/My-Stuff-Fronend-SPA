@@ -19,8 +19,10 @@ class DataTable extends Component {
 	
   render() {
 	var rows = []
+
 	rows = this.state.items.products.map((item) => {
-		return <tr key={item.id}><td>{item.product}</td></tr>
+		var imagePath = "/product_images/"+item.image_path
+		return <tr key={item.id}><td><img src={imagePath} alt="Product Image" width="42" height="42"/></td><td><a onClick={()=> {this.props.onProductSelect(item.id)}}>{item.product}</a></td><td><b>£</b>{item.price}</td></tr>
 	})
     return (
 	<div>
