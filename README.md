@@ -1,4 +1,4 @@
-This project is the single-page applciation for a classified ads web app, built using the popular React.js library.
+This project is the single-page application for a classified ads web app, built using the popular React.js library.
 
 To get started please install all required modules by running the following command: `npm install`.
 
